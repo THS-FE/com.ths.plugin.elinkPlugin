@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.ths.plugin.elinkPlugin" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<!--clobbers ： 非常重要。前端工程师在使用的时候通过这个 clobbers 去调用www/ThsElinkPlugin.js的公开方法
+feature 标签定义了 （服务名）name
+param name=”ios-package” value=”xxx” 定义iOS平台下的底层实现类名为 ： xxx
+param name=”android-package” value=”com.ths.plugin.elinkPlugin.ThsElinkPlugin” 定义Android平台下的底层实现的 包名.类 ： com.ths.plugin.elinkPlugin.ThsElinkPlugin-->
+<name>ThsElinkPlugin</name>
+<js-module name="ThsElinkPlugin" src="www/ThsElinkPlugin.js"><clobbers target="cordova.plugins.ThsElinkPlugin" /></js-module>
+
+<platform name="android">
+   <config-file parent="/*" target="res/xml/config.xml">
+        <feature name="ThsElinkPlugin"><param name="android-package" value="com.ths.plugin.elinkPlugin.ThsElinkPlugin" /></feature>
+   </config-file>
+   <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+   <source-file src="src/android/ThsElinkPlugin.java" target-dir="src/com/ths/plugin/elinkPlugin" />
+   <source-file src="src/android/imsdk.aar" target-dir="libs" />
+   <!--引入aar包中包含的so库。如果aar更新，这块文件也要对应更新-->
+   <!-- <source-file src="src/android/libs/armeabi/libAesHmac.so" target-dir="libs/armeabi" /> -->
+   <source-file src="src/android/libs/armeabi/libBaiduMapSDK_base_v5_2_0.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/libBaiduMapSDK_map_v5_2_0.so" target-dir="libs/armeabi" />
+    <!-- <source-file src="src/android/libs/armeabi/libHandParser.5.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/libHandParser.8.so" target-dir="libs/armeabi" /> -->
+    <source-file src="src/android/libs/armeabi/libindoor.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/liblocSDK7b.so" target-dir="libs/armeabi" />
+    <!-- <source-file src="src/android/libs/armeabi/libPathHelper.so" target-dir="libs/armeabi" /> -->
+    <source-file src="src/android/libs/armeabi/libpldroid_amix.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/libpldroid_encoder.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/libpldroid_shortvideo_core.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi/libsqlcipher.so" target-dir="libs/armeabi" />
+    <!-- <source-file src="src/android/libs/armeabi/libStrokes.so" target-dir="libs/armeabi" /> -->
+    <source-file src="src/android/libs/armeabi/libvvroom_peerconnection_jni.so" target-dir="libs/armeabi" />
+   <framework src="src/android/imsdk.gradle" custom="true" type="gradleReference" /> 
+</platform>
+</plugin>

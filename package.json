@@ -1,0 +1,17 @@
+{
+  "name": "com.ths.plugin.elinkPlugin",
+  "version": "0.0.1",
+  "description": "思路elink即时通信",
+  "cordova": {
+    "id": "com.ths.plugin.elinkPlugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "liuyx",
+  "license": "ISC"
+}
