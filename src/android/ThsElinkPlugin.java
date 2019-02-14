@@ -16,14 +16,12 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
-
-import cn.com.ths.portal.MainActivity;//要换成对应的应用包名
+import cn.com.sc.mobile.affairs.MainActivity;//要换成对应的应用包名
 import elink.mobile.im.bean.MesBean;
 
 /**
