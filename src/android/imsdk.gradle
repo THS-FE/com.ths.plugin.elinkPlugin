@@ -38,6 +38,9 @@ ext.postBuildExtras = {
     packagingOptions {
       exclude 'META-INF/NOTICE'
       exclude 'META-INF/LICENSE'
+      //报这个错误时，More than one file was found with OS independent path 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
+      //加一下配置
+      exclude 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
     }
     defaultConfig {
       multiDexEnabled true
