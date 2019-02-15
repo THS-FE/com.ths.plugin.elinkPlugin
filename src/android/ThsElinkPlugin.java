@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 import com.hxyl.Elink;
+import com.tencent.android.tpush.XGPushConfig;
+
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -112,6 +114,9 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         activity=cordova.getActivity();
+        
+        XGPushConfig.enableOtherPush(activity, true);
+        XGPushConfig.setHuaweiDebug(true);
         Elink.registerHandler(this);
         activity.registerReceiver(receiver,new IntentFilter(Elink.SYSTEM_MSG_ACTION));
         activity.registerReceiver(msgChangeeceiver, new IntentFilter(Elink.MSG_LIST_ACTION));

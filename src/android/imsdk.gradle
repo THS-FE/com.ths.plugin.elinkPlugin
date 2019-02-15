@@ -30,6 +30,15 @@ dependencies {
  * 注意：若小米通道使用此版本,则信鸽sdk版本也需要同时使用v3.2.6-release
  */
   compile 'com.tencent.xinge:mipush:3.2.6-release'
+    /* 华为 3.2.7-release版
+ * 注意：若华为通道使用此版本,则信鸽sdk版本也需要同时使用v3.2.7-Release
+ */
+compile 'com.tencent.xinge:xghw:3.2.6-release'
+
+/* 华为 3.2.8-Release
+ * 注意：若华为通道使用此版本,则信鸽sdk版本也需要同时使用v4.0.5
+ */
+    //compile 'com.tencent.xinge:xghw:3.2.8-Release'
 }
 
 //ext.postBuildExtras会在最后执行，覆盖Android模块的gradle配置
@@ -45,9 +54,10 @@ ext.postBuildExtras = {
     defaultConfig {
       multiDexEnabled true
       manifestPlaceholders = [
-        XG_ACCESS_ID:"2100312089",
-        XG_ACCESS_KEY:"A9SJ7P79L4FT",
-        PACKAGE_NAME:"cn.com.ths.portal"
+                XG_ACCESS_ID:"2100326881",
+                XG_ACCESS_KEY:"A136JKC9C3DA",
+                PACKAGE_NAME:"cn.com.sc.mobile.affairs",
+                HW_APPID: "100627911"
       ]
       ndk{
         abiFilters "armeabi"
