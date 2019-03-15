@@ -114,9 +114,11 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         activity=cordova.getActivity();
-        
-        XGPushConfig.enableOtherPush(activity, true);
+        //设置小米推送相关
+        XGPushConfig.setMiPushAppId(activity,"2882303761517947865");
+        XGPushConfig.setMiPushAppKey(activity,"5661794744865");
         XGPushConfig.setHuaweiDebug(true);
+        XGPushConfig.enableOtherPush(activity, true);
         Elink.registerHandler(this);
         activity.registerReceiver(receiver,new IntentFilter(Elink.SYSTEM_MSG_ACTION));
         activity.registerReceiver(msgChangeeceiver, new IntentFilter(Elink.MSG_LIST_ACTION));
@@ -339,7 +341,7 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
     }
 
     private void getUserIdByName(String name,CallbackContext callbackContext){
-        UUID uid = Elink.getUserIdByName(name);
+        UUID uid = Elink.getUserIdByLoginName(name);
         callbackContext.success("success");
     }
 
@@ -387,7 +389,7 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
     private void startChart(String name,CallbackContext callbackContext){
         tempName=name;
         tempCallbackContext=callbackContext;
-        UUID uid = Elink.getUserIdByName(name);
+        UUID uid = Elink.getUserIdByLoginName(name);
         if(uid != null){
             Elink.startChart(activity,uid,name);
             callbackContext.success("success");
