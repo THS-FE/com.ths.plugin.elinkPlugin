@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -347,10 +348,11 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
 
     @Override
     public void handlerEvent(int command, Object data) {
-
+        Log.e("Ccommand","handlerEventommand:"+command);
         switch (command){
             case NET_NOTFOUND:
-                Toast.makeText(activity,(String) data,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity,(String) data,Toast.LENGTH_SHORT).show();
+                Log.e("NET_NOTFOUND ",(String) data);
                 break;
             case NET_DISCONNECT:
                // Toast.makeText(activity,(String) data,Toast.LENGTH_SHORT).show();
@@ -364,8 +366,20 @@ public class ThsElinkPlugin extends CordovaPlugin implements Elink.IEventHandler
                     //startActivity(new Intent(activity,SecondActivity.class));
                 }else{
                     String msg = (String) data;
-                    Toast.makeText(activity,msg,Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(activity,msg,Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case 0x0105://退出
+                Toast.makeText(activity,"您的账号在另一台设备上登录,程序即将退出",Toast.LENGTH_LONG).show();
+                Elink.loginOut();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ThsElinkPlugin.this.activity.finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());   //获取PID
+                        System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
+                    }
+                },3000);
                 break;
             case 0x0912:
                 //查询人员信息返回
